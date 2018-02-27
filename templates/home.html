@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+<h1 align="center">Welcome {{ g.user.username }}</h1>
+
+<div class ="center">
+<div align="center">
+<h4>Register your U2F Device</h4>
+<input type="button" value="Register" onclick="location.href='{{ url_for('security') }}';" placeholder="register">
+</div>
+<div>

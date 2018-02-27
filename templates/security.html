@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}
+    Security
+{% endblock %}
+{% block body %}
+  <h2>{{ self.title() }}</h2>
+  <ul>
+  {% for device in devices %}
+    <li><img width="60" height="60" src="{{ device.metadata.device.imageUrl }}"><p>
+      <strong>{{ device.properties.name }}</strong><br />
+      {{ device.metadata.device.displayName }}<br />
+      <a href="{{ url_for('u2f_unregister', handle=device.handle) }}">Remove</a>
+  {% else %}
+    <li><em>You have no U2F devices registered.</em>
+  {% endfor %}
+  </ul>
+
+  <div>
+    <h3>Register a new U2F device</h3>
+    <form action="{{ url_for('u2f_register') }}" method=post>
+      <p><input type=text name=name placeholder="Device nickname" size=60>&nbsp;&nbsp;
+	  <input type=submit value="Add">
+    </form>
+  </div>
+
+{% endblock %}
